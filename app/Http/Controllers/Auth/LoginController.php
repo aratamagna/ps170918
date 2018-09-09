@@ -27,15 +27,21 @@ class LoginController extends Controller
 
   public function login()
   {
-    Log::info('Login '.date("Y-m-d H:i:s").request('name', $default = null));
+    //Log::info('Login '.date("Y-m-d H:i:s").request('name', $default = null));
+    Log::info('Login '.date("Y-m-d H:i:s").' rut: '.request('email', $default = null));
     $credentials = $this->validate(request(), [
-      $this->username()=> 'required|string',
+      //$this->username()=> 'required|string',
+      //'email' => 'email|required|string',
+      'email' => 'required|string',
       'password' => 'required|string'
     ]);
+
+Log::info('Credentials',$credentials);
 
     if(Auth::attempt($credentials))
     {
       $tip_user=Auth::user()->tipousuario_id;
+    //  Log::info('Tipo Usuario: ',$tip_user);
       switch($tip_user){
         case 3:
         {

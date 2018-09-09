@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8">
 		<!--<title>GymCV</title>-->
-            
+
                     <title>
                         @section('titulo')
                             GymCV
@@ -24,8 +24,8 @@
                 <link rel="shortcut icon" href="images/logotsv1.png"  class="img-circle">
                 <!--<link rel="shortcut icon" href="images/logo-arriba-sportlife.png" >-->
                <!-- <link rel="shortcut icon" href="images/logo-arriba-energy.png" >-->
-              
-                
+
+
 		<!-- Web Fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
@@ -55,25 +55,25 @@
 
 		<!-- Custom css -->
 		<link href="css/custom.css" rel="stylesheet">
-                
-                
-                
-                
+
+
+
+
               <!--  <link href="DateTable/css/table.css" rel="stylesheet">-->
-                
-       
-                
+
+
+
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-                 @yield('head')	
+                 @yield('head')
 	</head>
 
-	<!-- body classes: 
+	<!-- body classes:
 			"boxed": boxed layout mode e.g. <body class="boxed">
-			"pattern-1 ... pattern-9": background patterns for boxed layout mode e.g. <body class="boxed pattern-1"> 
+			"pattern-1 ... pattern-9": background patterns for boxed layout mode e.g. <body class="boxed pattern-1">
 	-->
 	<body class="front no-trans">
 		<!-- scrollToTop -->
@@ -121,26 +121,27 @@
 							</div>
 							<!-- header-top-first end -->
 
-						</div>   
-                                           
-						
-                                            
-                                            
+						</div>
+
+
+
+
                                                 <div class="col-xs-10 col-sm-6">
-                                                   
+
 
 							<!-- header-top-second start -->
 							<!-- ================ -->
 							<div id="header-top-second"  class="clearfix">
-                                                              
-								
-                                                            <?php 
+
+
+                                                            <?php
                                                             if (Auth::user()->guest()) //Si usuario es invitado hacer:
-                                                            {
-                                                            ?> 
+                                                          // if(1==1)
+							    {
+                                                            ?>
                                                                 <!-- header top dropdowns start -->
 								<!-- ================ -->
-								
+
                                                                 <div class="header-top-dropdown">
 									<!--  //boton de busqueda
                                                                         <div class="btn-group dropdown">
@@ -156,131 +157,75 @@
 											</li>
 										</ul>
 									</div>-->
-                                                               
+
 									<div class="btn-group dropdown">
-                                                                            
-                                                                        @if (Session::has('login_errors'))                                                
+
+                                                                        @if (Session::has('login_errors'))
                                                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" id="Button"  ><i class="fa fa-user"></i> Ingresar</button>
                                                                         @elseif (Session::has('login_errors2'))
                                                                          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" id="Button"  ><i class="fa fa-user"></i> Ingresar</button>
                                                                         @else
                                                                           <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Ingresar</button>
                                                                         @endif
-                                                  
-                                                                  
+
+
 										<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
 											<li>
-												<!--<form class="login-form">-->
+
                                                                                                 @if (Session::has('login_errors'))
                                                                                                 <div class="bg-danger">El nombre de usuario o la contraseña no son correctos.</div>
                                                                                                 @elseif (Session::has('login_errors2'))
                                                                                                 <div class="bg-danger">El nombre de usuario ha sido dado de baja.</div>
                                                                                                 @else
                                                                                                 <p>Introduzca usuario y contraseña para continuar.</p>
-                                                                                                @endif                                                                                            
-                                                                                                
+                                                                                                @endif
+
                                                                                                       <form action="login" method="post" autocomplete="off">
-                                                                                                          
+
 													<div class="form-group has-feedback">
 														<label class="control-label">Usuario</label>
-														<!--<input type="text" class="form-control" placeholder="">-->
-                                                                                                                <input name="email" id="email" type="text" class="form-control"  maxlength="12" onkeypress="return val(event)" onfocus="this.value=''" />
+								            <input name="email" id="email" type="text" class="form-control"  maxlength="12" onkeypress="return val(event)" onfocus="this.value=''" />
 														<i class="fa fa-user form-control-feedback"></i>
 													</div>
 													<div class="form-group has-feedback">
 														<label class="control-label">Contraseña</label>
-														<!--<input type="password" class="form-control" placeholder="">-->
+
                                                                                                                 <input name="password" type="password" class="form-control" onfocus="this.value=''" />
 														<i class="fa fa-lock form-control-feedback"></i>
 													</div>
                                                                                                      {{Form::input("hidden", "_token", csrf_token())}}
                                                                                                         {{Form::input("submit", null, "Entrar", array("class" => "btn btn-group btn-dark btn-sm"))}}
-													<!--<button type="submit" class="btn btn-group btn-dark btn-sm">Entrar</button>-->
-													
-                                                                                
 
 
 
 
-                                                                                                        <!--<span>or</span>
-													<button type="submit" class="btn btn-group btn-default btn-sm">Sign Up</button>-->
 
-													<!--<ul>
-														<li><a href="#">Forgot your password?</a></li>
-													</ul>-->
-											<!--<div class="divider"></div>-->
-													<!--<span class="text-center">Login with</span>
-													<ul class="social-links clearfix">
-														<li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
-														<li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
-														<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-													</ul>-->
+
+
+
 												</form>
-                                                                                               <!-- {{Form::close()}}-->
+
 											</li>
 										</ul>
 									</div>
-                                                                    
-           
-								<!--	<div class="btn-group dropdown">
-										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Cart (8)</button>
-										<ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
-											<li>
-												<table class="table table-hover">
-													<thead>
-														<tr>
-															<th class="quantity">QTY</th>
-															<th class="product">Product</th>
-															<th class="amount">Subtotal</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="quantity">2 x</td>
-															<td class="product"><a href="shop-product.html">Android 4.4 Smartphone</a><span class="small">4.7" Dual Core 1GB</span></td>
-															<td class="amount">$199.00</td>
-														</tr>
-														<tr>
-															<td class="quantity">3 x</td>
-															<td class="product"><a href="shop-product.html">Android 4.2 Tablet</a><span class="small">7.3" Quad Core 2GB</span></td>
-															<td class="amount">$299.00</td>
-														</tr>
-														<tr>
-															<td class="quantity">3 x</td>
-															<td class="product"><a href="shop-product.html">Desktop PC</a><span class="small">Quad Core 3.2MHz, 8GB RAM, 1TB Hard Disk</span></td>
-															<td class="amount">$1499.00</td>
-														</tr>
-														<tr>
-															<td class="total-quantity" colspan="2">Total 8 Items</td>
-															<td class="total-amount">$1997.00</td>
-														</tr>
-													</tbody>
-												</table>
-												<div class="panel-body text-right">	
-												<a href="shop-cart.html" class="btn btn-group btn-default btn-sm">View Cart</a>
-												<a href="shop-checkout.html" class="btn btn-group btn-default btn-sm">Checkout</a>
-												</div>
-											</li>
-										</ul>
-									</div>-->
 
 								</div>
 								<!--  header top dropdowns end -->
-  
+
                                                             <?php
                                                             }
                                                             else
                                                             {
                                                             ?>
-                                                                                                                              
-                                                              
-                                                                <div align=right>USUARIO: <b>{{Auth::user()->get()->email}}</b></DIV> 
-                                                                
+
+
+                                                                <div align=right>USUARIO: <b>{{Auth::user()->get()->email}}</b></DIV>
+
                                                                 <!--<font color="white"><DIV ALIGN=right>Usuario: <span><b>{{Auth::user()->get()->email}}</b></span><br></DIV></font>-->
                                                                  <a href="{{URL::route('salir')}}"><font color="red"> <div align=right> Cerrar Sesión</div></font></a>
-                                                              
-                                                                                                                                    
-                                                                                                                     
+
+
+
                                                             <?php
                                                             }
                                                             ?>
@@ -305,30 +250,30 @@
 							<div class="header-left clearfix">
 
 								<!-- logo -->
-                                                              
-                                                      <div class="logo"> 
-                                                                    
+
+                                                      <div class="logo">
+
                                                                        <!--  &nbsp; &nbsp;-->
                                                                 <!--      <a href="{{URL::to('inicio')}}">-->
                                                                      <!--  <img src="images/logo-190-60-2n-2n.png" >-->
                                                                       <!--   <img src="images/logo-tesis-gymcv3.png" >-->
-                                                              
+
                                                              <!--  <img src="images/logo-tesis-gymcv5.png" >-->
-                                                               
+
                                                                  <img src="images/GYMCVF3.png" >
                                                                    <!--<img src="images/logosportlifetrans.png" width="189">-->
                                                                     <!--<img src="images/logosportlifetrans.png" width="105">-->
-                                                                 
+
                                                                 <!--<img src="images/energy_vertical_trans.gif" width="70">-->
-                                                        
+
                                                                 <!--      </a>-->
-                                                                       
+
                                                                   <!--  <a href="{{URL::to('inicio')}}">
                                                                         <img src="images/logotsv2.png" width="120" height="1">
                                                                     </a>-->
-                                                                           
-                                                                         
-                                                        </div> 
+
+
+                                                        </div>
 
 								<!-- name-and-slogan -->
 								<div class="site-slogan">
@@ -366,15 +311,16 @@
 											</div>
 
 											<!-- Collect the nav links, forms, and other content for toggling -->
-											
+
                                                                                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                                                                                           
-                                        
+
+
 												<ul class="nav navbar-nav navbar-right">
 											<!--	<li class="dropdown active">-->
                                                                                         <?php
-                                                                                        
-                                                                                    if (Auth::user()->guest()) //Si usuario es invitado hacer:
+
+                                                                                    //if (Auth::user()->guest()) //Si usuario es invitado hacer:
+																																										if(1==1)
                                                                                     {
                                                                                         $vista = Route::currentRouteName();
                                                                                         $current = array
@@ -426,12 +372,12 @@
                                                                                             $current['clases'] = 'active';
                                                                                         }
                                                                                         ?>
-                                                                                   
-                                                                                        
-                                                              
-                                                                                        
+
+
+
+
 													<!--<li class="active">-->
-                                                                                                        <li class="{{$current['index']}}">  
+                                                                                                        <li class="{{$current['index']}}">
 														<a href="{{URL::to('')}}">Inicio</a>
 													</li>
 													<li class="{{$current['quienes-somos']}}">
@@ -451,20 +397,20 @@
 															<li class="{{$current['profesores']}}"><a href="{{URL::to('profesores')}}">Entrenadores</a></li>
 														</ul>
 													</li>
-                                                                                                 
-													 <li class="{{$current['contacto']}}">  
+
+													 <li class="{{$current['contacto']}}">
 														<a href="{{URL::route('contacto')}}" >Contacto</a>
 													</li>
-                                                                                                        
+
 				<!-- mega-menu start -->
-													
+
                                                                                 <?php
                                                                                 }
                                                                                 else
-                                                                                {   
+                                                                                {
                                                                                                                  $tip_user=Auth::user()->get()->tipousuario_id;
-                                                                                                                 
-                                                                                                                 
+
+
                                                                                                                    switch($tip_user){
                                                                                                                     case 3:
                                                                                                                         {
@@ -488,10 +434,10 @@
                                                                                                                              else if ($vista == 'datos_cliente')
                                                                                                                             {
                                                                                                                                 $current['datos_cliente'] = 'active';
-                                                                                                                            }  
+                                                                                                                            }
                                                                                                                 // return View::make('ClienteController.cliente');
                                                                                                                             ?>
-                                     
+
                                                                                                                         <li class="{{$current['cliente']}}">
                                                                                                                         <a href="{{URL::to('cliente')}}"  >Inicio</a>
                                                                                                                         </li>
@@ -501,9 +447,9 @@
                                                                                                                                         <li class=""><a href="">Asistencia</a></li>
                                                                                                                                     </ul>
                                                                                                                         </li>
-                                                                                                                        
+
                                                                                                                         <?php
-                                                                                                                        
+
                                                                                                                             break;}
                                                                                                                     case 2:
                                                                                                                         {
@@ -519,7 +465,7 @@
                                                                                                                                 'mb_ejercicio'=>'',
                                                                                                                                 'mbasico_entrenador'=>'',
                                                                                                                                 'clientes'=>'',
-                                                                                                                    
+
                                                                                                                                 );
                                                                                                                             if ($vista == 'entrenador')
                                                                                                                             {
@@ -528,7 +474,7 @@
                                                                                                                             else if ($vista == 'evaluacion')
                                                                                                                             {
                                                                                                                                 $current['entrenador'] = 'active';
-                                                                                                                            } 
+                                                                                                                            }
                                                                                                                             else if ($vista == 'gestion_rutina')
                                                                                                                             {
                                                                                                                                 $current['gestion_rutina'] = 'active';
@@ -558,7 +504,7 @@
                                                                                                                                 $current['mbasico_entrenador'] = 'active';
                                                                                                                             }
                                                                                                                         ?>
-                                                                                                         
+
                                                                                                                         <li class="{{$current['entrenador']}}">
                                                                                                                         <a href="{{URL::to('entrenador')}}"  >Inicio</a>
                                                                                                                         </li>
@@ -577,16 +523,16 @@
                                                                                                                                         <!--<li><a href="index-2.html">Ver Progreso</a></li>-->
                                                                                                                                 </ul>
                                                                                                                         </li>
-                                                                                                                        
+
                                                                                                                         <?php
-                                                                                                                        
+
                                                                                                                             break;}
                                                                                                                     default:
                                                                                                                         {
                                                                                                                           $vista = Route::currentRouteName();
                                                                                                                             $current = array
                                                                                                                                 (
-                                                                                                                                
+
                                                                                                                                 'administrador' => '',
                                                                                                                                 'gestion_entrenador'=>'',
                                                                                                                                 'gestion_cliente'=>'',
@@ -596,15 +542,15 @@
                                                                                                                                 'cant_clientes_ent'=>'',
                                                                                                                                 'mbasico_administrador'=>'',
                                                                                                                                 'reportes'=>'',
-                                                                                                                               
+
                                                                                                                                  //'login' => '',
                                                                                                                                  //'register' => '',
                                                                                                                                 );
-                                                                                                                           
+
                                                                                                                             if ($vista == 'administrador')
                                                                                                                             {
                                                                                                                                 $current['administrador'] = 'active';
-                                                                                                                            }  
+                                                                                                                            }
                                                                                                                             else if ($vista == 'mbasico_administrador')
                                                                                                                             {
                                                                                                                                 $current['mbasico_administrador'] = 'active';
@@ -613,7 +559,7 @@
                                                                                                                             {
                                                                                                                                 $current['mb_region'] = 'active';
                                                                                                                                 $current['mbasico_administrador'] = 'active';
-                                                                                                                            } 
+                                                                                                                            }
                                                                                                                             else if ($vista == 'mb_comuna')
                                                                                                                             {
                                                                                                                                 $current['mb_comuna'] = 'active';
@@ -633,9 +579,9 @@
                                                                                                                                 $current['cant_clientes_ent'] = 'active';
                                                                                                                                 $current['reportes'] = 'active';
                                                                                                                             }
-                                                                                                                            
+
                                                                                                                         ?>
-                                                                                                                        
+
                                                                                                                         <li class="{{$current['administrador']}}">
                                                                                                                         <a href="{{URL::route('administrador')}}"  >Inicio</a>
                                                                                                                         </li>
@@ -646,7 +592,7 @@
                                                                                                                                         <li class="{{$current['mb_comuna']}}"><a href="{{URL::route('mb_comuna')}}">Comuna</a></li>
                                                                                                                                     </ul>
                                                                                                                         </li>
-                                                                                                               
+
                                                                                                                         <li class="dropdown {{$current['reportes']}}">
                                                                                                                                     <a href="{{URL::route('reportes')}}" class="dropdown-toggle" data-toggle="dropdown">Reportes</a>
                                                                                                                                     <ul class="dropdown-menu">
@@ -654,19 +600,19 @@
                                                                                                                                         <li class="{{$current['cant_clientes_ent']}}"><a href="{{URL::route('cant_clientes_ent')}}">Clientes por cada entrenador</a></li>
                                                                                                                                     </ul>
                                                                                                                         </li>
-                                                                                                                        
+
                                                                                                                         <?php
                                                                                                                             break;}
 
                                                                                                                    }
-                                                                                                    
-                                                                                }                                                                                                           
+
+                                                                                }
                                                                                 ?>
-                                
-                                
-                                
+
+
+
 												</ul>
-                                                                                         
+
 											</div>
 
 										</div>
@@ -685,7 +631,7 @@
 			</header>               <!-- MENU PRINCIPAL -->
 			<!-- header end -->
 
-			
+
 
                  <!--      <div class="container">-->
                             @yield('content')
@@ -695,7 +641,7 @@
 			<!-- ================ -->
 			<footer id="footer">
 
-	
+
 				<!-- .subfooter start -->
 				<!-- ================ -->
 				<div class="subfooter">
@@ -707,7 +653,7 @@
                                                         <div class="col-md-6">
                                                            <p class="text-right"> Todos Los Derechos Reservados.</p>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -758,19 +704,19 @@
 
 		<!-- Custom Scripts -->
 		<script type="text/javascript" src="js/custom.js"></script>
-                
-                
+
+
                 <script type="text/javascript" src="rut/jquery.Rut.js"></script>
                 <script type="text/javascript" src="rut/jquery.Rut.min.js"></script>
-                
-                <script language="javascript" type="text/javascript"> 
-                    $(document).ready(function() {      
+
+                <script language="javascript" type="text/javascript">
+                    $(document).ready(function() {
                         $('#email').Rut({
                           //  format_on: 'keyup'
                     });
                     });
                 </script>
-                
+
                 <script>
                 function val(email) {
                     tecla = (document.all) ? email.keyCode : email.which;
@@ -780,20 +726,20 @@
                     return patron.test(te);
                 }
                 </script>
-                
+
                 <script>
                 var obj = document.getElementById("Button");
                 if (obj){
-                   obj.click();   
+                   obj.click();
                 }
                 </script>
-                
-                
-                
-                @yield('java')	
-               
-             
-               
+
+
+
+                @yield('java')
+
+
+
 
 	</body>
 </html>
