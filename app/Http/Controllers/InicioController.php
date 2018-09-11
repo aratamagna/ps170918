@@ -181,12 +181,15 @@ class InicioController extends BaseController {
     }
      public function salir()
     {
-         Session::forget('cliente_id');
-         Session::forget('fechaa');
-         Auth::user()->logout();  //Permite eliminar la sesión
+      //   Session::forget('cliente_id');
+      //   Session::forget('fechaa');
+      //   Auth::user()->logout();  //Permite eliminar la sesión
+
+       \Auth::logout();
         //   return Redirect::to('/');  //redericcionamos
            //  return View::make('HomeController.index');
-           return Redirect::to('');  //redericcionamos
+          // return Redirect::to('');  //redericcionamos
+            return redirect('');
     }
 
 }

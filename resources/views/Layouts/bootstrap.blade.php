@@ -59,22 +59,11 @@
 
 
 
-              <!--  <link href="DateTable/css/table.css" rel="stylesheet">-->
 
-
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
                  @yield('head')
 	</head>
 
-	<!-- body classes:
-			"boxed": boxed layout mode e.g. <body class="boxed">
-			"pattern-1 ... pattern-9": background patterns for boxed layout mode e.g. <body class="boxed pattern-1">
-	-->
+
 	<body class="front no-trans">
 		<!-- scrollToTop -->
 		<!-- ================ -->
@@ -134,29 +123,12 @@
 							<div id="header-top-second"  class="clearfix">
 
 
-                                                            <?php
-                                                            if (Auth::user()->guest()) //Si usuario es invitado hacer:
-                                                          // if(1==1)
-							    {
-                                                            ?>
+
+                                                          @guest
                                                                 <!-- header top dropdowns start -->
-								<!-- ================ -->
 
                                                                 <div class="header-top-dropdown">
-									<!--  //boton de busqueda
-                                                                        <div class="btn-group dropdown">
-										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i> Buscar</button>
-										<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
-											<li>
-												<form role="search" class="search-box">
-													<div class="form-group has-feedback">
-														<input type="text" class="form-control" placeholder="Search">
-														<i class="fa fa-search form-control-feedback"></i>
-													</div>
-												</form>
-											</li>
-										</ul>
-									</div>-->
+
 
 									<div class="btn-group dropdown">
 
@@ -212,23 +184,17 @@
 								</div>
 								<!--  header top dropdowns end -->
 
-                                                            <?php
-                                                            }
-                                                            else
-                                                            {
-                                                            ?>
+                                                          @else
 
 
-                                                                <div align=right>USUARIO: <b>{{Auth::user()->get()->email}}</b></DIV>
+                                                                <div align=right>USUARIO: <b>{{Auth::user()->email}}</b></DIV>
 
-                                                                <!--<font color="white"><DIV ALIGN=right>Usuario: <span><b>{{Auth::user()->get()->email}}</b></span><br></DIV></font>-->
+                                                                <!--<font color="white"><DIV ALIGN=right>Usuario: <span><b>{{Auth::user()->email}}</b></span><br></DIV></font>-->
                                                                  <a href="{{URL::route('salir')}}"><font color="red"> <div align=right> Cerrar Sesión</div></font></a>
 
 
 
-                                                            <?php
-                                                            }
-                                                            ?>
+                                                          @endguest
 							</div>
 							<!-- header-top-second end -->
 
@@ -317,11 +283,11 @@
 
 												<ul class="nav navbar-nav navbar-right">
 											<!--	<li class="dropdown active">-->
+
+											@guest
                                                                                         <?php
 
-                                                                                    //if (Auth::user()->guest()) //Si usuario es invitado hacer:
-																																										if(1==1)
-                                                                                    {
+
                                                                                         $vista = Route::currentRouteName();
                                                                                         $current = array
                                                                                             (
@@ -404,11 +370,10 @@
 
 				<!-- mega-menu start -->
 
+@else
                                                                                 <?php
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                                                 $tip_user=Auth::user()->get()->tipousuario_id;
+
+                                                                                                                 $tip_user=Auth::user()->tipousuario_id;
 
 
                                                                                                                    switch($tip_user){
@@ -606,8 +571,9 @@
 
                                                                                                                    }
 
-                                                                                }
+
                                                                                 ?>
+																																								@endguest
 
 
 
