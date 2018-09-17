@@ -136,7 +136,9 @@
                                                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" id="Button"  ><i class="fa fa-user"></i> Ingresar</button>
                                                                         @elseif (Session::has('login_errors2'))
                                                                          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" id="Button"  ><i class="fa fa-user"></i> Ingresar</button>
-                                                                        @else
+																																				@elseif ($errors->any())
+																																				<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" id="Button"  ><i class="fa fa-user"></i> Ingresar</button>
+																																				@else
                                                                           <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Ingresar</button>
                                                                         @endif
 
@@ -148,7 +150,11 @@
                                                                                                 <div class="bg-danger">El nombre de usuario o la contraseña no son correctos.</div>
                                                                                                 @elseif (Session::has('login_errors2'))
                                                                                                 <div class="bg-danger">El nombre de usuario ha sido dado de baja.</div>
-                                                                                                @else
+																																																@elseif ($errors->any())
+																																																<div class="bg-danger">{!! $errors->first('email', '<span class="help-block">El campo Usuario es obligatorio.</span>')!!}</div>
+																																																<div class="bg-danger">{!! $errors->first('password', '<span class="help-block">El campo Contraseña es obligatorio.</span>')!!}</div>
+																																																<!--<div class="bg-danger">{!! $errors->first('email', '<span class="help-block">:message</span>')!!}</div>-->
+																																																@else
                                                                                                 <p>Introduzca usuario y contraseña para continuar.</p>
                                                                                                 @endif
 

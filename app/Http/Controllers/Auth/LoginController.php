@@ -29,6 +29,7 @@ class LoginController extends Controller
   {
     //Log::info('Login '.date("Y-m-d H:i:s").request('name', $default = null));
     Log::info('Login '.date("Y-m-d H:i:s").' rut: '.request('email', $default = null));
+      Log::info('a');
     $credentials = $this->validate(request(), [
       //$this->username()=> 'required|string',
       //'email' => 'email|required|string',
@@ -36,10 +37,12 @@ class LoginController extends Controller
       'password' => 'required|string'
     ]);
 
-Log::info('Credentials',$credentials);
+    Log::info('Credentials',$credentials);
+    Log::info('Prueba');
 
     if(Auth::attempt($credentials))
     {
+      Log::info('b');
       $tip_user=Auth::user()->tipousuario_id;
     //  Log::info('Tipo Usuario: ',$tip_user);
       switch($tip_user){
@@ -60,9 +63,18 @@ Log::info('Credentials',$credentials);
         }
       }
     } else {
+      Log::info('c');
       return redirect('')->with('login_errors', true);
     }
+//  return redirect('')->with('login_errors', true);
+//  return back()->withErrors('login_errors', true);
+  return back()->withErrors(['email' =>'Estás credenciales no coinciden con nuestros registros','password' =>'Credencial obligatoria']);
+//return back()->withErrors([$this->username() => trans('auth.failed')])->withInput(request([$this->username()]));
+
+    /*
+    Log::info('d');
     return back()->withErrors([$this->username() => trans('auth.failed')])->withInput(request([$this->username()]));
+*/
   }
 
   public function logout()
