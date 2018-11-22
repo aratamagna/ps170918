@@ -4,8 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Sexo;
+use App\User;
+use App\Models\Evaluacionbasica;
+use App\Models\Entnombre;
+
 class Persona extends Model
 {
+  public $timestamps = false;
+
   protected $table = 'personas';
 
   public function sexo(){

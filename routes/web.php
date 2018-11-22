@@ -47,3 +47,8 @@ Route::get('/cant_personas',array('as'=>'cant_personas','uses'=>'AdministradorCo
 Route::get('/cant_clientes_ent',array('as'=>'cant_clientes_ent','uses'=>'AdministradorController@Cant_clientes_ent'));
 
 Route::get('ajax-subcat/{id}',array('as'=>'ajax-subcat','uses'=>'AdministradorController@Ajaxsubcat'));
+
+Route::get('/registrar_ent',array('as'=>'registrar_ent','uses'=>'AdministradorController@Registrar_ent'));
+Route::post('registrar_ent','AdministradorController@Registrar_ent');
+
+Route::post('data','AdministradorController@Data'); //GESTION CLIENTE - GESTION ENTRENADOR - RUTINA - EVALUACION

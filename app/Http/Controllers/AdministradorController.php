@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
-
 use Illuminate\Support\Facades\View;
-
+use Illuminate\Support\Facades\Input;
 use App\User;
-
 use App\Models\Sexo;
-
 use App\Models\Comuna;
-
+use App\Models\Persona;
 use DB;
+use Response;
+use Validator;
+use Redirect;
+use Hash;
 
 class AdministradorController extends BaseController {
 
@@ -164,7 +165,7 @@ class AdministradorController extends BaseController {
 
 
             $rut=Input::get('email');
-            $id_persona = DB::table('personas')->where('per_rut','=', $rut)->pluck('id');
+            $id_persona = DB::table('personas')->where('per_rut','=', $rut)->pluck('id')->first();
 
             $password = Input::get('password');
             $user = new User;
@@ -328,14 +329,19 @@ class AdministradorController extends BaseController {
     //método que se utiliza en clientes y entrenadores
     public function Ajaxsubcat($id)
     {
-      Log::info('ajax pruebaaaa',$id);
-        $comunas=Comuna::where('region_id','=',$id)->orderBy('com_nom', 'asc')->get()->all();
+  //    Log::info('ajax pruebaaaa',$id);
+    //    $comunas=Comuna::where('region_id','=',$id)->orderBy('com_nom', 'asc')->get()->all();
+        $comunas=Comuna::where('region_id','=',$id)->orderBy('com_nom', 'asc')->get();
         return Response::json($comunas);
     }
     public function Data()
     {
+      Log::info('Inicio Data');
         $user_id=Input::get('user');
+        Log::info('user_id=',$user_id);
+
         $user=User::find($user_id);
+
 
         $data = array(
             'success'=>true,

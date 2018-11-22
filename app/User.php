@@ -12,6 +12,8 @@ use App\Models\Evaluacionbasica;
 
 class User extends Authenticatable
 {
+  public $timestamps = false;
+
   use Notifiable;
 
   /**

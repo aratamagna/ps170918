@@ -620,7 +620,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-6">
-                                                            <p>Copyright © 2015 GYM CV S.A..</p>
+                                                            <p>Copyright © 2018 GYM CV S.A..</p>
 							</div>
                                                         <div class="col-md-6">
                                                            <p class="text-right"> Todos Los Derechos Reservados.</p>

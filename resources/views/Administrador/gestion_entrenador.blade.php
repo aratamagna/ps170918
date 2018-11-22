@@ -190,7 +190,9 @@
                                                     <div class="form-group">
                                                         <label for="com">*Comuna</label>
                                                             <select name="com" id="com" class="form-control">
-                                                                <option value="{{Input::old('com')}}">{{ DB::table('comunas')->where('id','=', Input::old('com') )->get() }}</option>
+                                                              @if(Input::old('com')!=null)
+                                                                <option value="{{Input::old('com')}}">{{ DB::table('comunas')->where('id','=', Input::old('com_edit') )->value('com_nom') }}</option>
+                                                              @endif
                                                             </select>
                                                         <div class="bg-danger">{{$errors->first("com")}}</div>
                                                     </div>
@@ -353,7 +355,9 @@
                                                     <div class="form-group">
                                                         <label for="com_edit">*Comuna</label>
                                                             <select name="com_edit" id="com_edit" class="form-control">
-                                                                <option value="{{Input::old('com_edit')}}">{{DB::table('comunas')->where('id','=', Input::old('com_edit') )->pluck('com_nom')}}</option>
+                                                              @if(Input::old('com')!=null)
+                                                                <option value="{{Input::old('com_edit')}}">{{DB::table('comunas')->where('id','=', Input::old('com_edit') )->value('com_nom')}}</option>
+                                                              @endif
                                                             </select>
                                                         <div class="bg-danger">{{$errors->first("com_edit")}}</div>
                                                     </div>
@@ -617,7 +621,7 @@
             <input id="val" type="hidden" name="user" class="input-block-level" value="" >
             <script language="javascript" type="text/javascript">
                     function editar(id_cli){
-
+alert("aqui");
                           //  $('[name=user]').val($(this).attr ('id'));
                          // $('[name=user]').val($(this).attr ('id_cli'));
                          $('[name=user]').val(id_cli);
@@ -626,9 +630,21 @@
                             var aux;
                             var fdata = $('#val').serialize();  //hacer serializacion
                             $('#load').show();//icono cargando
-                            $.post(faction, fdata, function(json) {
-                            if (json.success) {
 
+alert("faction: "+faction);
+alert("aux: "+aux);
+alert("fdata: "+fdata);
+                        /*    console.log(faction);
+                            console.log(aux);
+                            console.log(fdata);*/
+
+                            $.post(faction, fdata, function(json) {
+                              alert("entro");
+                              window.alert(json.success);
+                              console.log(json.success);
+                            if (json.success) {
+                              window.alert(faction);
+                              console.log(faction);
                                         $('#formEdit input[name="user_id"]').val(json.id);
 
                                             $('#formEdit input[name="email_edit"]').val(json.email);
@@ -660,9 +676,17 @@
                             } else {
                                 $('#errorMessage').html(json.message);
                                 $('#errorMessage').show();
-
+                                window.alert(1);
+                                console.log(1);
                             }
                         });
+
+                        alert("no entro");
+
+
+                    /*    console.log(faction);
+                        console.log(aux);
+                        console.log(fdata);*/
                     }
                 </script>
 
