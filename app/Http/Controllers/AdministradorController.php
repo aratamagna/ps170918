@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Support\Facades\View;
 
 use App\User;
+
+use App\Models\Sexo;
+
+use App\Models\Comuna;
 
 use DB;
 
@@ -42,12 +48,20 @@ class AdministradorController extends BaseController {
 
     public function Gestion_entrenador()
     {
+
         //$rut="17.676.404-K";
         //$id_persona = DB::table('personas')->where('per_rut','=', $rut)->pluck('id');
         // $users=User::all();
         $users=User::where('tipousuario_id','=','2')->get();
-        $sexo = DB::table('sexos')->orderBy('id', 'asc')->pluck('sex_nombre','id');
-        $region = DB::table('regiones')->orderBy('id', 'asc')->pluck('reg_nom','id');
+        $sexo = DB::table('sexos')->orderBy('id', 'asc')->pluck('sex_nombre','id')->all();
+        //$sexo = $sexo->all();
+        //  $sexo = DB::table('sexos')->orderBy('id', 'asc')->value('sex_nombre','id');
+      //  $sexo = DB::table('sexos')->orderBy('id', 'asc')->get();
+    //  $sexo=Sexo::all();
+//Log::info('sexo=');
+//Log::info('sexo= ',$users);
+
+        $region = DB::table('regiones')->orderBy('id', 'asc')->pluck('reg_nom','id')->all();
         return View::make('Administrador.gestion_entrenador')->with('users',$users)->with('sexo',$sexo)->with('region',$region);
         //  return View::make('Administrador.gestion_entrenador')->with('users',$users)->with('sexo',$sexo)->with('region',$region)->with('id_persona',$id_persona);
     }
@@ -314,7 +328,8 @@ class AdministradorController extends BaseController {
     //método que se utiliza en clientes y entrenadores
     public function Ajaxsubcat($id)
     {
-        $comunas=Comuna::where('region_id','=',$id)->orderBy('com_nom', 'asc')->get();
+      Log::info('ajax pruebaaaa',$id);
+        $comunas=Comuna::where('region_id','=',$id)->orderBy('com_nom', 'asc')->get()->all();
         return Response::json($comunas);
     }
     public function Data()

@@ -45,3 +45,5 @@ Route::get('/mb_comuna',array('as'=>'mb_comuna','uses'=>'ComunasController@Mb_co
 Route::get('/reportes',array('as'=>'reportes','uses'=>'AdministradorController@Reportes','before' => 'auth_user'));
 Route::get('/cant_personas',array('as'=>'cant_personas','uses'=>'AdministradorController@Cant_personas'));
 Route::get('/cant_clientes_ent',array('as'=>'cant_clientes_ent','uses'=>'AdministradorController@Cant_clientes_ent'));
+
+Route::get('ajax-subcat/{id}',array('as'=>'ajax-subcat','uses'=>'AdministradorController@Ajaxsubcat'));

@@ -190,7 +190,7 @@
                                                     <div class="form-group">
                                                         <label for="com">*Comuna</label>
                                                             <select name="com" id="com" class="form-control">
-                                                                <option value="{{Input::old('com')}}">{{DB::table('comunas')->where('id','=', Input::old('com') )->pluck('com_nom')}}</option>
+                                                                <option value="{{Input::old('com')}}">{{ DB::table('comunas')->where('id','=', Input::old('com') )->get() }}</option>
                                                             </select>
                                                         <div class="bg-danger">{{$errors->first("com")}}</div>
                                                     </div>
